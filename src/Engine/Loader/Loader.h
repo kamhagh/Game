@@ -6,7 +6,7 @@ class Loader{
 
 public:
 	
-	void loadObject(ShapeData& shape);
+	void loadObject(ShapeData& shape); // need to add cleanup method !!!
 
 private:
 

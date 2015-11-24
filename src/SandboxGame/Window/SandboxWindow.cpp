@@ -37,17 +37,21 @@ void SandboxWindow::initializeGL(){
 	timer.start(1000 / settings.eng.MAX_FPS);
 
 	vector<float> verts =
-	{ -0.5, 0.5, 0,
-	-0.5, -0.5, 0
+	{ -1, -1, 0,
+	1, -1, 0,
+	0,1,0
 	};
 
 	vector<GLuint> index = {
-		0, 1, 3
+		0, 1, 2
 	};
-	shape = ShapeData(verts, index);
+	shape.type = 1;
+	shape.position = verts;
+	shape.indicies = index;
 	loader.loadObject(shape);
 
-	
+	Entity entity = Entity(shape);
+	renderer.processEntities(entity);
 
 }
 
@@ -56,9 +60,9 @@ void SandboxWindow::paintGL(){
 	glViewport(0, 0, width(), height());
 	renderer.prepare();
 
+	renderer.render();
 	
-	Entity entity = Entity(shape);
-	renderer.render(entity);
+
 
 }
 
@@ -74,9 +78,4 @@ void SandboxWindow::checkKeyState(){
 	if (GetAsyncKeyState(VK_ESCAPE)){
 		close();
 	}
-}
-
-void SandboxWindow::close(){
-	
-	
 }

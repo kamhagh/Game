@@ -10,8 +10,12 @@ void Renderer::prepare(){
 
 void Renderer::render(){
 
-	
+	for (auto i : entities){
 
+		glBindVertexArray(i.shape->vertexArrayObjectID);
+		glDrawElements(GL_TRIANGLES, i.shape->indicies.size(), GL_UNSIGNED_INT, 0);
+	}
+		
 }
 
 void Renderer::render(Entity &entity){

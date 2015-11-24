@@ -39,8 +39,6 @@ private:
 
 	void checkKeyState();
 
-	void close();
-
 private slots:
 
 	void update();
