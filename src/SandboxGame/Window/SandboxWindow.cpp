@@ -1,4 +1,7 @@
 #include "src\SandboxGame\Window\SandboxWindow.h"
+#include <iostream>
+#include <vector>
+using std::vector;
 
 bool SandboxWindow::initialize(){
 
@@ -31,12 +34,32 @@ void SandboxWindow::initializeGL(){
 	glewInit();
 	
 	connect(&timer, SIGNAL(timeout()), this, SLOT(update()));
-	timer.start(0);
+	timer.start(1000 / settings.eng.MAX_FPS);
+
+	vector<float> verts =
+	{ -0.5, 0.5, 0,
+	-0.5, -0.5, 0
+	};
+
+	vector<GLuint> index = {
+		0, 1, 3
+	};
+	shape = ShapeData(verts, index);
+	loader.loadObject(shape);
+
+	
+
 }
 
 void SandboxWindow::paintGL(){
 
 	glViewport(0, 0, width(), height());
+	renderer.prepare();
+
+	
+	Entity entity = Entity(shape);
+	renderer.render(entity);
+
 }
 
 void SandboxWindow::update(){
@@ -51,4 +74,9 @@ void SandboxWindow::checkKeyState(){
 	if (GetAsyncKeyState(VK_ESCAPE)){
 		close();
 	}
+}
+
+void SandboxWindow::close(){
+	
+	
 }

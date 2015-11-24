@@ -1,0 +1,21 @@
+#pragma once
+#include <GL\GL.h>
+#include "src\Engine\Model\ShapeData.h"
+#include <vector>
+class Loader{
+
+public:
+	
+	void loadObject(ShapeData& shape);
+
+private:
+
+	ShapeData *shape;
+
+	void setupVertexAndIndexArrays();
+	void bindShapeData();
+	void bindShapeData_type1();			//type1 = position and index only
+
+
+};
+
