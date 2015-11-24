@@ -1,6 +1,7 @@
 #include "src\SandboxGame\Window\SandboxWindow.h"
 #include <iostream>
 #include <vector>
+#include "src\Engine\Model\ShapeGenerator.h"
 using std::vector;
 
 bool SandboxWindow::initialize(){
@@ -36,17 +37,9 @@ void SandboxWindow::initializeGL(){
 	connect(&timer, SIGNAL(timeout()), this, SLOT(update()));
 	timer.start(1000 / settings.eng.MAX_FPS);
 
-	vector<float> verts =
-	{ -1, -1, 0,
-	1, -1, 0,
-	0,1,0
-	};
+	shape = ShapeGenerator::createBasicTriangle();
+	shape.type = 1;
 
-	vector<GLuint> index = {
-		0, 1, 2
-	};
-
-	shape = ShapeData(verts, index);
 	loader.loadObject(shape);
 
 	Entity entity = Entity(shape);
