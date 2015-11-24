@@ -45,9 +45,8 @@ void SandboxWindow::initializeGL(){
 	vector<GLuint> index = {
 		0, 1, 2
 	};
-	shape.type = 1;
-	shape.position = verts;
-	shape.indicies = index;
+
+	shape = ShapeData(verts, index);
 	loader.loadObject(shape);
 
 	Entity entity = Entity(shape);
