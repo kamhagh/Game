@@ -8,20 +8,41 @@
 
 using std::vector;
 
-ShapeData ShapeGenerator::createBasicTriangle(){
+ShapeData ShapeGenerator::createTriangle_type1(){
 	
 	ShapeData ret;
 
-	ret.position = {
+	ret.verts = {
 
 		+0.0f, +1.0f, +0.0f,
-
 		-1.0f, -1.0f, +0.0f,
-
 		+1.0f, -1.0f, +0.0,
 	};
 
 	ret.indicies = { 0, 1, 2 };
+	ret.type = 1;
+
+	return ret;
+}
+
+ShapeData ShapeGenerator::createTriangle_type2(){
+
+	ShapeData ret;
+
+	ret.verts = {
+
+		+0.0f, +1.0f, +0.0f,
+		+1.0f, +0.0f, +0.0f,
+
+		-1.0f, -1.0f, +0.0f,
+		+0.0f, +1.0f, +0.0f,
+
+		+1.0f, -1.0f, +0.0,
+		+0.0f, +0.0f, +1.0f,
+	};
+
+	ret.indicies = { 0, 1, 2 };
+	ret.type = 2;
 
 	return ret;
 }

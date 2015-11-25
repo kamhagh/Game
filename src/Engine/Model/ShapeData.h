@@ -7,13 +7,11 @@ class ShapeData {
 
 public:
 	ShapeData(){};
-	ShapeData(std::vector<float> pos, std::vector<GLuint> ind) : position(pos), indicies(ind), type(1){}
+	ShapeData(std::vector<float> verts, std::vector<GLuint> ind) : verts(verts), indicies(ind), type(1){}
 
-	std::vector<float> position;
+	std::vector<float> verts;
 	std::vector<GLuint> indicies;
-	std::vector<float> color;
-	std::vector<float> normals;
-	std::vector<float> texture;
+
 
 	GLuint vertexArrayObjectID;
 	GLuint vertexBufferID;

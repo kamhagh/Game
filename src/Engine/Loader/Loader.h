@@ -14,8 +14,8 @@ private:
 
 	void setupVertexAndIndexArrays();
 	void bindShapeData();
-	void bindShapeData_type1();			//type1 = position and index only
-
+	void bindShapeData_type1();			//type1 = position only
+	void bindShapeData_type2();			//type2 = position and color;
 
 };
 

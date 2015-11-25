@@ -10,6 +10,7 @@
 #include "src\Engine\Render Engine\Renderer.h"
 #include "src\Engine\Model\ShapeData.h"
 #include "src\Engine\Entities\Entity.h"
+#include "src\Engine\Shader\BasicShader.h"
 
 class SandboxWindow : public QGLWidget{
 
@@ -33,6 +34,7 @@ private:
 	Renderer renderer;
 
 	ShapeData shape;
+	BasicShader basicShader;
 
 	QTimer timer;
 	Clock clock;

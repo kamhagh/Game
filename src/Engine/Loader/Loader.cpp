@@ -17,10 +17,16 @@ void Loader::bindShapeData(){
 
 	switch (shape->type)
 	{
-	case (1) :
+	case (1) : {
 		bindShapeData_type1();
 		break;
 	}
+	case (2) : {
+		bindShapeData_type2();
+		break;
+	}
+	}
+
 
 }
 
@@ -28,8 +34,17 @@ void Loader::bindShapeData_type1(){
 
 	glBindBuffer(GL_ARRAY_BUFFER, shape->vertexBufferID);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
 
+}
+
+void Loader::bindShapeData_type2(){
+	
+	glBindBuffer(GL_ARRAY_BUFFER, shape->vertexBufferID);
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), 0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 }
 
 
@@ -40,7 +55,7 @@ void Loader::setupVertexAndIndexArrays(){
 
 	glGenBuffers(1, &shape->vertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, shape->vertexBufferID);
-	glBufferData(GL_ARRAY_BUFFER, shape->position.size() * sizeof(float), &shape->position[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, shape->verts.size() * sizeof(float), &shape->verts[0], GL_STATIC_DRAW);
 
 
 	glGenBuffers(1, &shape->indexBufferID);

@@ -33,12 +33,15 @@ bool SandboxWindow::shutdown(){
 void SandboxWindow::initializeGL(){
 	
 	glewInit();
+
+	basicShader.installShader();
+	basicShader.startPorgram();
 	
 	connect(&timer, SIGNAL(timeout()), this, SLOT(update()));
 	timer.start(1000 / settings.eng.MAX_FPS);
 
-	shape = ShapeGenerator::createBasicTriangle();
-	shape.type = 1;
+	shape = ShapeGenerator::createTriangle_type2();
+
 
 	loader.loadObject(shape);
 
@@ -51,8 +54,9 @@ void SandboxWindow::paintGL(){
 
 	glViewport(0, 0, width(), height());
 	renderer.prepare();
-
+	
 	renderer.render();
+
 	
 
 
