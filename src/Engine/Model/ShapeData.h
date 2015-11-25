@@ -2,6 +2,7 @@
 #include <GL\glew.h>
 #include <glm\glm.hpp>
 #include <vector>
+#include "src\Engine\Texture\Texture.h"
 
 class ShapeData {
 
@@ -12,6 +13,7 @@ public:
 	std::vector<float> verts;
 	std::vector<GLuint> indicies;
 
+	Texture texture;
 
 	GLuint vertexArrayObjectID;
 	GLuint vertexBufferID;

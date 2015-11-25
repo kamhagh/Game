@@ -32,7 +32,7 @@ std::string Shader::readShaderCode(const GLchar* fileName){
 
 	std::ifstream input(fileName);
 	if (!input.good()){
-		std::cout << "File failed to load";
+		std::cout << "File failed to load"<<std::endl;
 		exit(1);
 	}
 	return std::string(std::istreambuf_iterator<char>(input), std::istreambuf_iterator<char>());

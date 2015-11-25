@@ -1,6 +1,10 @@
 #include <GL\glew.h>
 #include "src\Engine\Loader\Loader.h"
 #include <vector>
+#include <fstream>
+#include <string>
+#include <iostream>
+#include <SOIL\SOIL.h>
 using std::vector;
 
 void Loader::loadObject(ShapeData &shape){
@@ -10,6 +14,27 @@ void Loader::loadObject(ShapeData &shape){
 	setupVertexAndIndexArrays();	
 	bindShapeData();
 
+}
+
+void Loader::loadTexture(Texture &texture){
+	
+	glGenTextures(1, &texture.bufferID);
+	glBindTexture(GL_TEXTURE_2D, texture.bufferID);
+
+	unsigned char* image = SOIL_load_image(texture.path.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGB);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture.width, texture.height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	SOIL_free_image_data(image);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	
+	// move to renderer ! 
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture.bufferID);
+	
 }
 
 
@@ -23,6 +48,11 @@ void Loader::bindShapeData(){
 	}
 	case (2) : {
 		bindShapeData_type2();
+		break;
+	}
+	case (3) : {
+		loadTexture(shape->texture);
+		bindShapeData_type3();
 		break;
 	}
 	}
@@ -45,6 +75,15 @@ void Loader::bindShapeData_type2(){
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), 0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+}
+
+void Loader::bindShapeData_type3(){
+	
+	glBindBuffer(GL_ARRAY_BUFFER, shape->vertexBufferID);
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 }
 
 

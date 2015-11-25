@@ -47,6 +47,31 @@ ShapeData ShapeGenerator::createTriangle_type2(){
 	return ret;
 }
 
+ShapeData ShapeGenerator::createTriangle_type3(){
+
+	ShapeData ret;
+
+	ret.verts = {
+
+		+0.0f, +1.0f, +0.0f,
+		+0.0f, +1.0f,
+
+		-1.0f, -1.0f, +0.0f,
+		+0.0f, +0.0f,
+
+		+1.0f, -1.0f, +0.0,
+		+1.0f, +0.0f,
+	};
+
+	ret.indicies = { 0, 1, 2 };
+	ret.type = 3;
+	ret.texture.path = "res/texture/test.png";
+	ret.texture.width = 296;
+	ret.texture.height = 296;
+
+	return ret;
+}
+
 ShapeData ShapeGenerator::createCubeTest(){
 
 	ShapeData ret;

@@ -40,7 +40,7 @@ void SandboxWindow::initializeGL(){
 	connect(&timer, SIGNAL(timeout()), this, SLOT(update()));
 	timer.start(1000 / settings.eng.MAX_FPS);
 
-	shape = ShapeGenerator::createTriangle_type2();
+	shape = ShapeGenerator::createTriangle_type3();
 
 
 	loader.loadObject(shape);

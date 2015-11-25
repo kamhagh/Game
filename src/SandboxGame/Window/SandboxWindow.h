@@ -11,6 +11,7 @@
 #include "src\Engine\Model\ShapeData.h"
 #include "src\Engine\Entities\Entity.h"
 #include "src\Engine\Shader\BasicShader.h"
+#include "src\Engine\Shader\BasicTexturedShader.h"
 
 class SandboxWindow : public QGLWidget{
 
@@ -34,7 +35,7 @@ private:
 	Renderer renderer;
 
 	ShapeData shape;
-	BasicShader basicShader;
+	BasicTexturedShader basicShader;
 
 	QTimer timer;
 	Clock clock;
