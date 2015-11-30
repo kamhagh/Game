@@ -28,10 +28,10 @@ protected:
 	GLint getUniformLocation(std::string &uniformName);
 	virtual void getAllUniformLocations();
 
-	void loadBooleanToUniform(GLuint &location, bool &data);
-	void loadFloatToUniform(GLuint &location, GLfloat &data);
-	void loadFloatVectorToUniform(GLuint &location, glm::vec3 &data);
-	void loadFloatMatrixToUniform(GLuint &location, glm::mat4 &data);
+	void loadToUniform(GLuint &location, bool &data);
+	void loadToUniform(GLuint &location, GLfloat &data);
+	void loadToUniform(GLuint &location, glm::vec3 &data);
+	void loadToUniform(GLuint &location, glm::mat4 &data);
 
 	bool checkStatus(GLuint objectID, PFNGLGETSHADERIVPROC objectPropertyGetter,
 		PFNGLGETSHADERINFOLOGPROC getInfoLogFun, GLenum statusType);
