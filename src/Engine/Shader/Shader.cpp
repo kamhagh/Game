@@ -57,7 +57,7 @@ void Shader::getAllUniformLocations(){
 }
 
 
-void Shader::loadBooleanToUniform(GLuint &location, bool &data){
+void Shader::loadToUniform(GLuint &location, bool &data){
 
 	if (data == true){
 		glUniform1f(location, data);
@@ -67,17 +67,17 @@ void Shader::loadBooleanToUniform(GLuint &location, bool &data){
 	}
 
 }
-void Shader::loadFloatToUniform(GLuint &location, GLfloat &data){
+void Shader::loadToUniform(GLuint &location, GLfloat &data){
 
 	glUniform1f(location, data);
 }
 
-void Shader::loadFloatVectorToUniform(GLuint &location, glm::vec3 &data){
+void Shader::loadToUniform(GLuint &location, glm::vec3 &data){
 
 	glUniform3fv(location, 1, &data[0]);
 }
 
-void Shader::loadFloatMatrixToUniform(GLuint &location, glm::mat4 &data){
+void Shader::loadToUniform(GLuint &location, glm::mat4 &data){
 
 	glUniformMatrix4fv(location, 1, GL_FALSE, &data[0][0]);
 }
